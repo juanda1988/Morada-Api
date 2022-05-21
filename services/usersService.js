@@ -8,7 +8,9 @@ const auth = (email, password) => {
   return responseError(401, "user unauthorized");
 };
 
-const register = () => {};
+const register = () => {
+  return responseOk({ "status": "ok" });
+};
 
 module.exports = {
     auth,

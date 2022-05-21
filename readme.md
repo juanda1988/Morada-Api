@@ -15,11 +15,11 @@ Method | Endpoint | Data        | Auth Required
 
 ### Propiedades
 
-Method | Endpoint | Data        | Auth Required
------- | -------- | ----------- | -------------
-`GET` | /property | query: type, businessType | No
-`GET` | /property/:id | url: id               | No
-`POST` | /property | body: { title, ... }     | Si
-`DELETE` | /property/:id | url: id            | Si
-`PUT` | /property/:id | body: { title, ... }  | Si
-`POST` | /property/:id | body: {comentario}   | Si
+Method | Endpoint | Data        | Auth Required | Description
+------ | -------- | ----------- | ------------- | ------------
+`GET` | /property | query: type, businessType | No | Obtener todas las propiedades con opción de filtro
+`GET` | /property/:id | url: id               | No | Obtener una sola propiedad / detalle
+`POST` | /property | body: { title, ... }     | Si | Agregar una propiedad
+`DELETE` | /property/:id | url: id            | Si | Eliminar una propiedad
+`PUT` | /property/:id | body: { title, ... }  | Si | Actualizar una propiedad
+`POST` | /property/:id | body: {comentario}   | Si | Notificar interés sobre una propiedad
