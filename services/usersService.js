@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const UserModel = require('./../models/userModel');
 const responseOk = require('../utils/responseOk');
 const responseError = require('../utils/responseError');
@@ -7,7 +8,12 @@ const auth = async(email, password) => {
 
     const user = await UserModel.findOne({email:email,password:password});
     if (user) {
-      return responseOk({ token: "xxxxyyyyzzzzwwwwttttt",user });
+      const payload = {
+        id: user._id,
+        role: user.role
+      };
+      const token = jwt.sign(payload, "millavesecreta");
+      return responseOk({ token , role:user.role });
       
     }
     return responseError(401, "user unauthorized");
