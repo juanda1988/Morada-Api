@@ -1,14 +1,25 @@
-const { auth, register } = require('../services/usersService');
+const { auth, register, info } = require('../services/usersService');
 
-const login = (req, res) => {
+const login = async(req, res) => {
   try {
     const user = req.body;
-    const { statusHttp, response } = auth(user.email, user.password);
+    const { statusHttp, response } = await auth(user.email, user.password);
     res.status(statusHttp).json(response);
   } catch (error) {
     res.status(500).send(error);
   }
 };
+
+const getUser = async(req,res) =>{
+  try {
+    const {id} = req.query;
+    const {statusHttp,response} = await info(id);
+    res.status(statusHttp).json(response);
+    
+  } catch (error) {
+    res.status(500).send(error); 
+  }
+}
 
 const signup = async (req, res) => {
   try {
@@ -22,5 +33,6 @@ const signup = async (req, res) => {
 
 module.exports = {
     login,
-    signup
+    signup,
+    getUser
 }

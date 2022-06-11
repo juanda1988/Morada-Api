@@ -2,12 +2,31 @@ const UserModel = require('./../models/userModel');
 const responseOk = require('../utils/responseOk');
 const responseError = require('../utils/responseError');
 
-const auth = (email, password) => {
-  if (email === "juan@cedesistemas.edu.co" && password === "123456") {
-    return responseOk({ token: "xxxxyyyyzzzzwwwwttttt" });
+const auth = async(email, password) => {
+  try {
+
+    const user = await UserModel.findOne({email:email,password:password});
+    if (user) {
+      return responseOk({ token: "xxxxyyyyzzzzwwwwttttt",user });
+      
+    }
+    return responseError(401, "user unauthorized");
+    
+  } catch (error) {
+    return responseError(500, 'Server error')
   }
-  return responseError(401, "user unauthorized");
+ 
 };
+
+const info = async (id) =>{
+  try {
+    const user = await UserModel.findById(id);
+    return responseOk({user});
+    
+  } catch (error) {
+    return responseError(500, 'Server error')
+  }
+}
 
 const register = async (userData) => {
   try {
@@ -34,5 +53,6 @@ const validateEmail = async (email) => {
 
 module.exports = {
     auth,
-    register
+    register,
+    info
 }

@@ -3,7 +3,7 @@ const { Schema } = moongoose;
 
 
 const PropertySchema = new Schema({
-    title: String,
+    tittle: String,
     city: Number,
     zone: Number,
     propertyType: Number,
@@ -17,6 +17,7 @@ const PropertySchema = new Schema({
     value: Number,
     shortDescription: String,
     description: String,
+    status: Number
 }, {
     timestamps: true
 });
