@@ -38,7 +38,7 @@ const addProperty = async (propertyData) => {
   
   const getProperty = async (id) => {
     try {
-      const property = PropertyModel.findById(id);
+      const property = await PropertyModel.findById(id).populate("ownerId","name email phone").exec();
       if(property){
         return responseOk({property});
       }
