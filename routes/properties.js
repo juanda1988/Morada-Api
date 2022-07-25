@@ -1,9 +1,15 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const {create,getAll,getDetail} = require("./../controllers/propertiesCtrl")
+const {
+  create,
+  getAll,
+  getDetail,
+  uploadImage,
+} = require("./../controllers/propertiesCtrl");
 
-router.post('/', create);
-router.get('/', getAll);
-router.get('/:id', getDetail);
+router.post("/", create);
+router.get("/", getAll);
+router.get("/:id", getDetail);
+router.post("/upload", uploadImage);
 
 module.exports = router;
